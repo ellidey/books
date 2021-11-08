@@ -7,8 +7,8 @@
                 <img src="img/book.jpg" alt="">
             </div>
             <div class="books__item-name">{{ $book->name }}</div>
-            <div class="books__item-descript">{{ $book->description }}</div>
-            <div class="books__item-buttom"><a href="" class="btn">Подробнее</a></div>
+            <div class="books__item-descript">{{ mb_substr($book->description, 0, 32) }}...</div>
+            <div class="books__item-buttom"><a href="{{ route('book', $book->id) }}" class="btn">Подробнее</a></div>
         </div>
     @endforeach
 </div>

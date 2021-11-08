@@ -11,4 +11,13 @@ class MainController extends Controller
         $books = Book::all();
         return view('welcome', ['books' => $books]);
     }
+
+    public function book($id) {
+        $book = Book::whereId($id)->first();
+        if(!$book) {
+            return redirect('/');
+        }
+
+        return view('book', ['book' => $book]);
+    }
 }
