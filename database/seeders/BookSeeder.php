@@ -16,11 +16,12 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $faker = Factory::create('ru_RU');
             DB::table('books')->insert([
                 'name' => $faker->word,
                 'description' => $faker->realText(1500),
+                'image' => 'book-' . $faker->numberBetween(1, 6) . '.jpg',
             ]);
         }
     }

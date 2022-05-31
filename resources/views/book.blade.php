@@ -4,7 +4,7 @@
     <div class="book">
         <div class="book__left">
             <div class="book__image">
-                <img src="{{ asset('img/book.jpg') }}">
+                <img src="{{ asset('img/books/' . $book->image) }}">
             </div>
             <div class="book__return">
                 <a href="/" class="btn">Назад</a>

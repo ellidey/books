@@ -42,11 +42,23 @@ class BookController extends Controller
             'description' => ['required', 'string', 'min:32', 'max:5000'],
         ]);
 
+        $imageName = 'book.jpg';
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = public_path('/img/books/');
+            $image->move($imagePath, $imageName);
+        }
+
         if ($validator->fails()) {
             return redirect(route('books.create'))->withErrors($validator);
         }
 
-        Book::create($request->all());
+        Book::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $imageName
+        ]);
 
         return redirect(route('books.index'));
     }
@@ -88,13 +100,24 @@ class BookController extends Controller
             'description' => ['required', 'string', 'min:32', 'max:5000'],
         ]);
 
+
+        $imageName = Book::where('id', $id)->first()->image;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = public_path('/img/books/');
+            $image->move($imagePath, $imageName);
+        }
+
+
         if ($validator->fails()) {
             return redirect(route('books.edit'))->withErrors($validator);
         }
 
         $book = Book::whereId($id)->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'image' => $imageName
         ]);
 
         return redirect(route('books.index'));
