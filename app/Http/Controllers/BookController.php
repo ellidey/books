@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,10 +14,16 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::get();
-        return view('home.books.index', ['books' => $books]);
+        $books = Book::with('user', 'category');
+
+        if ($request->user()->role_id != User::TYPE_ADMINISTRATOR) {
+            $books = $books->where('user_id', $request->user()->id);
+        }
+
+
+        return view('home.books.index', ['books' => $books->get()]);
     }
 
     /**

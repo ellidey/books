@@ -121,7 +121,7 @@ a.head__menu-item:last-child {
 .books {
     display: flex;
     width: 100%;
-    margin: 10vh 0;
+    margin: 30px 0;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -239,7 +239,7 @@ a.head__menu-item:last-child {
 
 .form__area {
     resize: vertical;
-    min-height: 100px;
+    min-height: 250px;
 }
 
 .invalid-feedback strong {
@@ -272,7 +272,7 @@ a.head__menu-item:last-child {
 
 .create {
     margin: 100px auto;
-    max-width: 500px;
+    max-width: 900px;
 }
 
 .create__title {
@@ -348,7 +348,28 @@ h1,h2,h3,h4,h5,h6 {
     display: inline-block;
 }
 
+.book__auth {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .book__return {
     margin-top: 15px;
     text-align: center;
+}
+
+.categories {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.categories a {
+    text-decoration: none;
+    border-bottom: 2px solid rgb(37,37,37);
+    padding: 5px 10px;
+}
+
+.categories a.active {
+    border-bottom: 2px solid rgb(77, 102, 240);
 }

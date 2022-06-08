@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+<div class="categories">
+    @foreach($categories as $cat)
+        @isset($category)
+            <a class="{{ $cat == $category ? 'active' : '' }}" href="{{ route('category', $cat->id) }}">{{ $cat->name }}</a>
+        @else
+            <a href="{{ route('category', $cat->id) }}">{{ $cat->name }}</a>
+        @endisset
+    @endforeach
+</div>
 <div class="books">
     @foreach($books as $book)
         <div class="books__item">

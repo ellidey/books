@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('index');
 Route::get('/book/{id}', [\App\Http\Controllers\MainController::class, 'book'])->name('book');
+Route::get('/category/{id}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 
 Auth::routes();
 
@@ -23,5 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->prefix('home')->group(function() {
     Route::resource('books', \App\Http\Controllers\BookController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 });
 

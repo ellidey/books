@@ -21,17 +21,25 @@
         </a>
 
         <div class="head__search">
-            <input class="head_search-input" type="text">
-            <button class="btn search-btn">
-                Поиск
-            </button>
+            <form action="{{ route('index') }}" method="GET">
+                <input class="head_search-input" name="search" type="text">
+                <button class="btn search-btn">
+                    Поиск
+                </button>
+            </form>
         </div>
 
         <div class="head__menu">
             @if(auth()->user())
+                @if (auth()->user()->role_id == 1)
+                    <a href="{{ route('users.index') }}" class="head__menu-item">Пользователи</a>
+                    <a href="{{ route('categories.index') }}" class="head__menu-item">Категории</a>
+                @endif
                 <a href="{{ route('home') }}" class="head__menu-item">Профиль</a>
-                <a href="{{ route('books.index') }}" class="head__menu-item">Книги</a>
-                <a href="{{ route('users.index') }}" class="head__menu-item">Пользователи</a>
+
+                @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                    <a href="{{ route('books.index') }}" class="head__menu-item">Книги</a>
+                @endif
             @else
                 <a href="{{ route('login') }}" class="head__menu-item">Авторизация</a>
                 <a href="{{ route('register') }}" class="head__menu-item">Регистрация</a>

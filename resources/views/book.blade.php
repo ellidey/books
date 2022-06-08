@@ -12,6 +12,7 @@
         </div>
         <div class="book__right">
             <div class="book__name">{{ $book->name }}</div>
+            <div class="book__auth">{{ $book->user->name }}</div>
             <div class="book__description">{{ $book->description }}</div>
         </div>
     </div>
